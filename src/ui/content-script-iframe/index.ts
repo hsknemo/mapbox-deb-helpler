@@ -4,12 +4,7 @@ import { appRouter } from "src/utils/router"
 import { createApp } from "vue"
 import App from "./app.vue"
 import ui from "@nuxt/ui/vue-plugin"
-import "./index.css"
 
-appRouter.addRoute({
-  path: "/",
-  redirect: "/content-script-iframe",
-})
 
 const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
 

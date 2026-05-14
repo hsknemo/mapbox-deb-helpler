@@ -78,6 +78,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.564.0",
+    "sass-embedded": "^1.99.0",
+    "scss": "^0.2.4",
     "tailwind-merge": "^3.4.1"
   }
 }

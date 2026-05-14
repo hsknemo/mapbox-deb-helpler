@@ -1,17 +1,13 @@
-// This import css file is used to style the iframe that is injected into the page
-import "./index.css"
-import { name } from "~/package.json"
-
-const src = chrome.runtime.getURL("src/ui/content-script-iframe/index.html")
-
-const iframe = new DOMParser().parseFromString(
-  `<iframe class="crx-iframe ${name}" src="${src}" title="${name}"></iframe>`,
-  "text/html",
-).body.firstElementChild
-
-if (iframe) {
-  document.body?.append(iframe)
-}
+import { onMessage } from "webext-bridge/content-script"
+  // 监听来自 popup 或其他上下文的消息
+onMessage("get-page-window-info", async (message) => {
+  console.log(message, "监听进入")
+  // 获取当前页面 window 对象的信息
+  const pageInfo = {
+    varible:  window[message?.data?.name],
+  }
+  return pageInfo
+})
 
 self.onerror = function (message, source, lineno, colno, error) {
   console.info("Error: " + message)
@@ -21,4 +17,4 @@ self.onerror = function (message, source, lineno, colno, error) {
   console.info("Error object: " + error)
 }
 
-console.info("hello world from content-script")
+console.info("content-script running....")
